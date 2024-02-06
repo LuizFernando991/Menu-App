@@ -7,16 +7,16 @@ import {
 } from 'typeorm'
 
 @Entity()
-export class Category {
+export class CategoryEntity {
   @PrimaryGeneratedColumn()
   id: number
 
   @Column()
   name: string
 
-  @ManyToOne(() => Category, { nullable: true })
-  parent: Category
+  @ManyToOne(() => CategoryEntity, { nullable: true })
+  parent: CategoryEntity
 
-  @OneToMany(() => Category, (category) => category.parent)
-  children: Category[]
+  @OneToMany(() => CategoryEntity, (category) => category.parent)
+  children: CategoryEntity[]
 }
