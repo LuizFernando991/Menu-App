@@ -16,6 +16,7 @@ import {
 import { ProductsService } from './products.service'
 import { FileInterceptor } from '@nestjs/platform-express'
 import { CreateProductDto, UpdateProductDto } from './product.dto'
+import { IsPublic } from 'src/decorators/is-public.decorator'
 
 @Controller('product')
 export class ProductsController {
@@ -30,6 +31,13 @@ export class ProductsController {
   ) {
     const categoryIds = categories ? categories.split(',').map((id) => +id) : []
     return this.productsService.findAll(+page, search, categoryIds)
+  }
+
+  @Get('/:id')
+  @IsPublic()
+  @HttpCode(HttpStatus.OK)
+  async findOne(@Param('id') id: number) {
+    return this.productsService.findOne(+id)
   }
 
   @Post()

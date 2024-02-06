@@ -51,6 +51,20 @@ export class ProductsService {
     }
   }
 
+  async findOne(id: number) {
+    const product = await this.productRepository.findOne({
+      where: {
+        id
+      },
+      relations: { categories: true }
+    })
+    if (!product) {
+      throw new NotFoundException('product not found')
+    }
+
+    return product
+  }
+
   async create(
     productData: CreateProductDto,
     imagePath: string
