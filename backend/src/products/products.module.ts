@@ -5,10 +5,11 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { ProductEntity } from './product.entity'
 import { MulterModule } from '@nestjs/platform-express'
 import { diskStorage } from 'multer'
+import { CategoryEntity } from 'src/categories/category.entity'
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([ProductEntity]),
+    TypeOrmModule.forFeature([ProductEntity, CategoryEntity]),
     MulterModule.register({
       dest: './uploads',
       storage: diskStorage({
