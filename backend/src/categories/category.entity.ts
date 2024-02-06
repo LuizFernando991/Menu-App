@@ -6,7 +6,7 @@ import {
   OneToMany
 } from 'typeorm'
 
-@Entity()
+@Entity({ name: 'category' })
 export class CategoryEntity {
   @PrimaryGeneratedColumn()
   id: number
