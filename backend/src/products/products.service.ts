@@ -83,4 +83,21 @@ export class ProductsService {
 
     return updatedProduct
   }
+
+  async delete(id: number) {
+    const product = await this.productRepository.findOne({
+      where: {
+        id
+      }
+    })
+    if (!product) {
+      throw new NotFoundException('product not found')
+    }
+
+    removeImageFromStorage(product.photo)
+
+    await this.productRepository.delete(product)
+
+    return
+  }
 }

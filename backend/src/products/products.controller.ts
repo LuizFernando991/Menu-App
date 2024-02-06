@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Body,
   Controller,
+  Delete,
   HttpCode,
   HttpStatus,
   Param,
@@ -47,5 +48,14 @@ export class ProductsController {
       throw new BadRequestException('id is required')
     }
     return this.productsService.update(+id, updateProductDto, imagePath)
+  }
+
+  @Delete('/:id')
+  @HttpCode(HttpStatus.OK)
+  async delete(@Param('id') id: number) {
+    if (!id) {
+      throw new BadRequestException('id is required')
+    }
+    return this.productsService.delete(id)
   }
 }
