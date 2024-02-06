@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { AuthModule } from './auth/auth.module'
 import { JwtAuthGuard } from './guards/jwt-auth.guard'
+import { CategoriesModule } from './categories/categories.module'
 
 @Module({
   imports: [
@@ -18,7 +19,8 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard'
       entities: [__dirname + '/**/*.entity.{js,ts}'],
       synchronize: true
     }),
-    AuthModule
+    AuthModule,
+    CategoriesModule
   ],
   controllers: [],
   providers: [
