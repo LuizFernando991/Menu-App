@@ -13,6 +13,7 @@ services:
       - PG_PASSWORD=postgres
       - PG_DB=postgres
       - PG_PORT=5432
+      - JWT_SECRET=secret
     volumes:
       - .:/usr/app
     depends_on:
