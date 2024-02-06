@@ -7,8 +7,8 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { ProductEntity } from './product.entity'
 import { In, Repository } from 'typeorm'
 import { CreateProductDto, UpdateProductDto } from './product.dto'
-import { CategoryEntity } from 'src/categories/category.entity'
-import { removeImageFromStorage } from 'src/helpers/deleteImage'
+import { CategoryEntity } from '../categories/category.entity'
+import { removeImageFromStorage } from '../helpers/deleteImage'
 
 @Injectable()
 export class ProductsService {

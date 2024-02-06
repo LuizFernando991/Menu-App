@@ -16,7 +16,7 @@ import {
 import { ProductsService } from './products.service'
 import { FileInterceptor } from '@nestjs/platform-express'
 import { CreateProductDto, UpdateProductDto } from './product.dto'
-import { IsPublic } from 'src/decorators/is-public.decorator'
+import { IsPublic } from '../decorators/is-public.decorator'
 
 @Controller('product')
 export class ProductsController {
