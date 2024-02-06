@@ -43,6 +43,9 @@ export class ProductsController {
     if (photo) {
       imagePath = photo.filename
     }
-    return this.productsService.update(id, updateProductDto, imagePath)
+    if (!id) {
+      throw new BadRequestException('id is required')
+    }
+    return this.productsService.update(+id, updateProductDto, imagePath)
   }
 }
