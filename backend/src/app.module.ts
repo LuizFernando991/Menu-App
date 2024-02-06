@@ -13,7 +13,7 @@ import { AuthModule } from './auth/auth.module'
       username: process.env.PG_USER,
       password: process.env.PG_PASSWORD,
       database: process.env.PG_DB,
-      entities: [__dirname + '/**/*.entity(.ts,.js)'],
+      entities: [__dirname + '/**/*.entity.{js,ts}'],
       synchronize: true
     }),
     AuthModule
