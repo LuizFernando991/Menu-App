@@ -23,6 +23,7 @@ export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
   @Get()
+  @IsPublic()
   @HttpCode(HttpStatus.OK)
   async findAll(
     @Query('page') page = '1',
