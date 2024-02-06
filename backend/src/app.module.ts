@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { AuthModule } from './auth/auth.module'
 import { JwtAuthGuard } from './guards/jwt-auth.guard'
 import { CategoriesModule } from './categories/categories.module'
+import { ProductsModule } from './products/products.module'
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { CategoriesModule } from './categories/categories.module'
       synchronize: true
     }),
     AuthModule,
-    CategoriesModule
+    CategoriesModule,
+    ProductsModule
   ],
   controllers: [],
   providers: [
