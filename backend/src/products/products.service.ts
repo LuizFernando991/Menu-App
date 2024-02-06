@@ -19,6 +19,38 @@ export class ProductsService {
     private readonly categoryRepository: Repository<CategoryEntity>
   ) {}
 
+  async findAll(page: number, search: string, categoriesIds: number[]) {
+    const limit = 20
+    const queryBuilder = this.productRepository.createQueryBuilder('product')
+
+    if (search) {
+      queryBuilder.where('product.name LIKE :search', { search: `%${search}%` })
+    }
+
+    if (categoriesIds.length > 0) {
+      queryBuilder
+        .innerJoinAndSelect('product.categories', 'category')
+        .andWhere('category.id IN (:...categoryIds)')
+        .setParameter('categoryIds', categoriesIds)
+    } else {
+      queryBuilder.leftJoinAndSelect('product.categories', 'category')
+    }
+
+    const [products, total] = await queryBuilder
+      .skip((page - 1) * limit)
+      .take(limit)
+      .getManyAndCount()
+
+    const totalPages = Math.ceil(total / limit)
+
+    return {
+      page,
+      totalPages,
+      totalResults: total,
+      data: products
+    }
+  }
+
   async create(
     productData: CreateProductDto,
     imagePath: string

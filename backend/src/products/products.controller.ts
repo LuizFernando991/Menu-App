@@ -3,11 +3,13 @@ import {
   Body,
   Controller,
   Delete,
+  Get,
   HttpCode,
   HttpStatus,
   Param,
   Patch,
   Post,
+  Query,
   UploadedFile,
   UseInterceptors
 } from '@nestjs/common'
@@ -18,6 +20,17 @@ import { CreateProductDto, UpdateProductDto } from './product.dto'
 @Controller('product')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
+
+  @Get()
+  @HttpCode(HttpStatus.OK)
+  async findAll(
+    @Query('page') page = '1',
+    @Query('search') search: string,
+    @Query('categories') categories: string
+  ) {
+    const categoryIds = categories ? categories.split(',').map((id) => +id) : []
+    return this.productsService.findAll(+page, search, categoryIds)
+  }
 
   @Post()
   @UseInterceptors(FileInterceptor('photo'))
