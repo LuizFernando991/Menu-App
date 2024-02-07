@@ -15,6 +15,8 @@ async function bootstrap() {
     })
   )
 
+  app.enableCors()
+
   app.useStaticAssets(join(__dirname, '..', 'upload'))
 
   await app.listen(3000)
