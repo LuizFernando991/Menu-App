@@ -5,12 +5,14 @@ import { AuthProvider } from './context/AuthContext'
 // pages
 import Login from './pages/Login'
 import { Toaster } from 'react-hot-toast'
+import NavBar from './components/NavBar'
 
 const App = () => {
   return (
     <Router>
       <Toaster containerStyle={{ fontSize: '1.6rem' }} />
       <AuthProvider>
+        <NavBar />
         <Routes>
           <Route path="/login" element={<Login />} />
         </Routes>

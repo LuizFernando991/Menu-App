@@ -2,3 +2,11 @@ $gray: #717171;
 $primary: #ea1d2c;
 $secondary: #fdedee;
 $white: #fff;
+
+.link {
+  text-decoration: none;
+  color: $primary;
+  &:visited {
+    color: $primary;
+  }
+}
