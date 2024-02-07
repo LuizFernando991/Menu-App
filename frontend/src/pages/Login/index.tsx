@@ -1,9 +1,11 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Input from '../../components/Input'
 import './login.styles.scss'
+import useAuth from '../../hooks/useAuth'
 
 const Login: FC = () => {
+  const [loading, setLoading] = useState(false)
   const {
     register,
     handleSubmit,
@@ -15,8 +17,12 @@ const Login: FC = () => {
     }
   })
 
-  const onSubmit = (data: { email: string; password: string }) => {
-    console.log(data)
+  const { singIn } = useAuth()
+
+  const onSubmit = async (data: { email: string; password: string }) => {
+    setLoading(true)
+    await singIn(data)
+    setLoading(false)
   }
   return (
     <div className="login-container">
@@ -36,7 +42,7 @@ const Login: FC = () => {
             type="password"
             error={errors['password'] ? errors['password'].message : ''}
           />
-          <button>Entrar</button>
+          <button disabled={loading}>Entrar</button>
         </form>
       </main>
     </div>
