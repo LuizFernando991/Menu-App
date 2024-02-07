@@ -10,3 +10,10 @@ $white: #fff;
     color: $primary;
   }
 }
+
+.main-container {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

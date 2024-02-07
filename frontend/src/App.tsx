@@ -12,10 +12,12 @@ const App = () => {
     <Router>
       <Toaster containerStyle={{ fontSize: '1.6rem' }} />
       <AuthProvider>
-        <NavBar />
-        <Routes>
-          <Route path="/login" element={<Login />} />
-        </Routes>
+        <div className="main-container">
+          <NavBar />
+          <Routes>
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </div>
       </AuthProvider>
     </Router>
   )
