@@ -6,6 +6,8 @@ import { AuthModule } from './auth/auth.module'
 import { JwtAuthGuard } from './guards/jwt-auth.guard'
 import { CategoriesModule } from './categories/categories.module'
 import { ProductsModule } from './products/products.module'
+import { ServeStaticModule } from '@nestjs/serve-static'
+import { join } from 'path'
 
 @Module({
   imports: [
@@ -19,6 +21,10 @@ import { ProductsModule } from './products/products.module'
       database: process.env.PG_DB,
       entities: [__dirname + '/**/*.entity.{js,ts}'],
       synchronize: true
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'uploads'),
+      serveRoot: '/public'
     }),
     AuthModule,
     CategoriesModule,
