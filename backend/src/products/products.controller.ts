@@ -26,12 +26,17 @@ export class ProductsController {
   @IsPublic()
   @HttpCode(HttpStatus.OK)
   async findAll(
-    @Query('page') page = '1',
+    @Query('page') page: string,
     @Query('search') search: string,
     @Query('categories') categories: string
   ) {
+    const formattedPage = page ? +page : 1
     const categoryIds = categories ? categories.split(',').map((id) => +id) : []
-    return this.productsService.findAll(+page, search, categoryIds)
+    return this.productsService.findAll(
+      isNaN(formattedPage) ? 1 : formattedPage,
+      search,
+      categoryIds
+    )
   }
 
   @Get('/:id')
