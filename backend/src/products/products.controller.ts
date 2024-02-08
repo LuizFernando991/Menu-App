@@ -22,7 +22,7 @@ import { IsPublic } from '../decorators/is-public.decorator'
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
-  @Get()
+  @Get('/')
   @IsPublic()
   @HttpCode(HttpStatus.OK)
   async findAll(
