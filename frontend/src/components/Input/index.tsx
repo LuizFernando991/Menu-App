@@ -28,7 +28,7 @@ const Input: FC<InputPropsType> = ({
         {...register(name, { required: 'Preencha esse campo' })}
       />
       <label htmlFor={name} className="form__label">
-        {name}
+        {placeholder}
       </label>
       <p className="error">{error}</p>
     </div>
