@@ -44,7 +44,9 @@ const ProductForm: FC<ProductFormProps> = ({ product, onSubmit }) => {
     defaultValues: {
       name: product?.name ? product.name : '',
       qty: product?.qty ? product.qty : 1,
-      price: product?.price ? product.price.toString() : '1,00'
+      price: product?.price
+        ? product.price.toString().replace('.', ',')
+        : '1,00'
     }
   })
   const api = useApi()
@@ -101,6 +103,14 @@ const ProductForm: FC<ProductFormProps> = ({ product, onSubmit }) => {
         })
         setIsLoading(false)
       })
+    } else {
+      await onSubmit({
+        ...data,
+        qty: Number(data.qty),
+        price: formattedPrice,
+        categoryIds: selectedCategories.map((cat) => cat.value)
+      })
+      setIsLoading(false)
     }
   }
 
@@ -109,13 +119,14 @@ const ProductForm: FC<ProductFormProps> = ({ product, onSubmit }) => {
   return (
     <form className="form" onSubmit={handleSubmit(onFormSubmit)}>
       <label className="image-container" htmlFor="image">
-        {croppedImage ? (
+        {croppedImage || product?.photo ? (
           <img
-            className="rounded-full img-preview object-cover w-20 h-20"
             src={
               croppedImage
                 ? croppedImage
-                : `${process.env.REACT_APP_API_PUBLIC_FOLDER_URL}${product?.photo}`
+                : product?.photo
+                  ? `${process.env.REACT_APP_API_PUBLIC_FOLDER_URL}${product?.photo}`
+                  : ''
             }
           />
         ) : (

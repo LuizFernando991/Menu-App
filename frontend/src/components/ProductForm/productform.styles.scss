@@ -13,9 +13,10 @@
 }
 
 .image-container {
-  width: 100%;
+  align-self: center;
+  width: 30rem;
   margin: 2rem;
-  height: 20rem;
+  height: 30rem;
   display: flex;
   flex-direction: column;
   align-items: center;
