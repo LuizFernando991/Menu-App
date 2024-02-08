@@ -8,6 +8,7 @@ import Login from './pages/Login'
 import NavBar from './components/NavBar'
 import CreateProduct from './pages/CreateProduct'
 import EditProduct from './pages/EditProduct'
+import Home from './pages/Home'
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <div className="main-container">
           <NavBar />
           <Routes>
+            <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/create" element={<CreateProduct />} />
             <Route path="/edit/:id" element={<EditProduct />} />
