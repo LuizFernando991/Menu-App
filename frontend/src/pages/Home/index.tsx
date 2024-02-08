@@ -3,11 +3,20 @@ import banner from '../../assents/banner.png'
 import SearchInput from '../../components/SearchInput'
 import { useApi } from '../../hooks/useApi'
 import { Category } from '../../types/Category'
-import { useLocation, useNavigate, createSearchParams } from 'react-router-dom'
+import {
+  useLocation,
+  useNavigate,
+  createSearchParams,
+  Link
+} from 'react-router-dom'
 import Select from 'react-select'
 import transformCategories from '../../helpers/tranformSelectOptions'
 import { ProductType } from '../../types/Prodcut'
 import { useDebounce } from '../../hooks/useDebounce'
+import Pagination from '../../components/Pagination'
+import ProductCard from '../../components/ProductCard'
+import { IoCreateOutline } from 'react-icons/io5'
+import useAuth from '../../hooks/useAuth'
 import './home.styles.scss'
 
 type SelectOptionsType = {
@@ -23,7 +32,7 @@ const Home: FC = () => {
   const categoriesQuery = queryParams.get('categories')
   const navigate = useNavigate()
   const [search, setSearch] = useState(searchQuery || '')
-  const [currentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1)
   const [products, setProducts] = useState<ProductType[]>([])
   const [totalPages, setTotalPages] = useState(1)
   const [categories, setCategories] = useState<Category[]>([])
@@ -32,6 +41,7 @@ const Home: FC = () => {
   >([])
   const debouncedSearch = useDebounce(search, 300)
   const api = useApi()
+  const { user } = useAuth()
   useEffect(() => {
     ;(async () => {
       try {
@@ -56,7 +66,7 @@ const Home: FC = () => {
           params: {
             search: searchQuery || '',
             page: pageQuery || '',
-            categories: categoriesQuery || ''
+            categories: categoriesQuery?.replace('or', ',') || ''
           }
         })
         setProducts(data.data)
@@ -96,9 +106,6 @@ const Home: FC = () => {
     })
   }, [debouncedSearch, selectedCategories, currentPage])
 
-  console.log(products)
-  console.log(totalPages)
-
   const categoriesOptions: SelectOptionsType[] = transformCategories(categories)
 
   return (
@@ -126,10 +133,37 @@ const Home: FC = () => {
             })}
           />
           <div className="search-input-container">
-            <SearchInput value={search} setValue={(e) => setSearch(e)} />
+            <SearchInput
+              value={search}
+              setValue={(e) => {
+                if (currentPage !== 1) {
+                  setCurrentPage(1)
+                }
+                setSearch(e)
+              }}
+            />
           </div>
         </div>
       </header>
+      {!!user && (
+        <Link className="create-button" to="/create">
+          Criar Item <IoCreateOutline />
+        </Link>
+      )}
+      <div className="products-container">
+        <ul className="product-listing">
+          {products.map((prod) => (
+            <ProductCard key={prod.id} product={prod} />
+          ))}
+        </ul>
+      </div>
+      <Pagination
+        onPageChange={(e) => {
+          setCurrentPage(e)
+        }}
+        totalCount={totalPages}
+        currentPage={currentPage}
+      />
     </main>
   )
 }
