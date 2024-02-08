@@ -1,0 +1,14 @@
+@import '../Input/input.styles.scss';
+
+.seach-options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.search-input-container {
+  width: 100%;
+  max-width: 500px;
+}
