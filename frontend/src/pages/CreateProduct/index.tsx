@@ -23,6 +23,8 @@ const CreateProduct: FC = () => {
       if (value) {
         if (key === 'photo' && value instanceof File) {
           formData.append(key, value)
+        } else if (typeof value === 'string') {
+          formData.append(key, value)
         } else {
           formData.append(key, JSON.stringify(value))
         }
