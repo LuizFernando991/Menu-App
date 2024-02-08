@@ -7,6 +7,7 @@ import { AuthProvider } from './context/AuthContext'
 import Login from './pages/Login'
 import NavBar from './components/NavBar'
 import CreateProduct from './pages/CreateProduct'
+import EditProduct from './pages/EditProduct'
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/create" element={<CreateProduct />} />
+            <Route path="/edit/:id" element={<EditProduct />} />
           </Routes>
         </div>
       </AuthProvider>
