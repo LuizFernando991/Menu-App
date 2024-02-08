@@ -9,6 +9,7 @@ export type ProductFormType = {
 }
 
 export type ProductType = {
+  id: number
   name: string
   qty: number
   price: number
