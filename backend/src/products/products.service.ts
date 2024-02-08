@@ -24,7 +24,9 @@ export class ProductsService {
     const queryBuilder = this.productRepository.createQueryBuilder('product')
 
     if (search) {
-      queryBuilder.where('product.name LIKE :search', { search: `%${search}%` })
+      queryBuilder.where('LOWER(product.name) LIKE LOWER(:search)', {
+        search: `%${search}%`
+      })
     }
 
     if (categoriesIds.length > 0) {
