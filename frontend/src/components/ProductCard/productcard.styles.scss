@@ -1,0 +1,54 @@
+@import '../../App.scss';
+
+.product-card-container {
+  background-color: $secondary;
+  padding: 20px;
+  border-radius: 5px;
+  gap: 1rem;
+  box-shadow: 0 0 5px rgba(255, 31, 31, 0.2);
+  display: flex;
+
+  img {
+    width: 13rem;
+    height: 13rem;
+    border-radius: 14px;
+  }
+
+}
+
+.side-information {
+  flex-grow: 1;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-direction: column;
+
+  h3 {
+    font-size: 1.5rem;
+    width: 100%;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: wrap;
+  }
+
+  p {
+    font-size: 1.6rem;
+    margin-top: 1rem;
+    font-weight: 600;
+  }
+
+  a {
+    width: 100%;
+    text-decoration: none;
+    color: $white;
+    padding: 1rem;
+    font-size: 1.2rem;
+    background-color: $primary;
+    text-align: center;
+    border-radius: 10px;
+    display: block;
+    margin-top: 1rem;
+  }
+}
