@@ -7,10 +7,12 @@ type SearchInputPropsType = {
   setValue: (search: string) => void
 }
 
-const SearchInput: FC<SearchInputPropsType> = () => {
+const SearchInput: FC<SearchInputPropsType> = ({ value, setValue }) => {
   return (
     <div className="form__group field">
       <input
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
         id="search"
         className="form__field"
         placeholder={'Pesquise seu prato favorito!'}
