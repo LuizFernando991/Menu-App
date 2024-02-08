@@ -3,6 +3,7 @@ import { Toaster } from 'react-hot-toast'
 import './App.scss'
 // contexts
 import { AuthProvider } from './context/AuthContext'
+import ProtectedRoutes from './components/ProtectedRoutes'
 // pages
 import Login from './pages/Login'
 import NavBar from './components/NavBar'
@@ -20,8 +21,10 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/create" element={<CreateProduct />} />
-            <Route path="/edit/:id" element={<EditProduct />} />
+            <Route element={<ProtectedRoutes />}>
+              <Route path="/create" element={<CreateProduct />} />
+              <Route path="/edit/:id" element={<EditProduct />} />
+            </Route>
           </Routes>
         </div>
       </AuthProvider>
