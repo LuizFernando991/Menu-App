@@ -37,7 +37,7 @@ export class ProductsController {
   @Get('/:id')
   @IsPublic()
   @HttpCode(HttpStatus.OK)
-  async findOne(@Param('id') id: number) {
+  async findOne(@Param('id') id: string) {
     return this.productsService.findOne(+id)
   }
 
