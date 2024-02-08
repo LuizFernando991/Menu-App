@@ -41,7 +41,7 @@ export class ProductsController {
     return this.productsService.findOne(+id)
   }
 
-  @Post()
+  @Post('/')
   @UseInterceptors(FileInterceptor('photo'))
   async create(
     @Body() createProductDto: CreateProductDto,

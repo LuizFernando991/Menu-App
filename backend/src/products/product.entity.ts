@@ -18,7 +18,7 @@ export class ProductEntity {
   @Column()
   qty: number
 
-  @Column()
+  @Column({ type: 'float' })
   price: number
 
   @Column()

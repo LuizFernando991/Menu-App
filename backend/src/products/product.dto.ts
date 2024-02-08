@@ -1,12 +1,12 @@
 import {
   IsString,
   Min,
-  IsInt,
   IsNumber,
+  IsInt,
   ArrayNotEmpty,
   IsNotEmpty
 } from 'class-validator'
-import { Transform } from 'class-transformer'
+import { Transform, Type } from 'class-transformer'
 import { PartialType } from '@nestjs/mapped-types'
 import { BadRequestException } from '@nestjs/common'
 
@@ -15,12 +15,12 @@ export class CreateProductDto {
   @IsNotEmpty()
   name: string
 
-  @Transform(({ value }) => parseFloat(value))
+  @Type(() => Number)
   @IsInt()
   @Min(1)
   qty: number
 
-  @Transform(({ value }) => parseFloat(value))
+  @Type(() => Number)
   @IsNumber()
   @Min(0)
   price: number
