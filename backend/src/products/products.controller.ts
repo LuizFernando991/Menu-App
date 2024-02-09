@@ -33,7 +33,7 @@ export class ProductsController {
     const formattedPage = page ? +page : 1
     const categoryIds = categories ? categories.split(',').map((id) => +id) : []
     return this.productsService.findAll(
-      isNaN(formattedPage) ? 1 : formattedPage,
+      isNaN(formattedPage) || formattedPage < 1 ? 1 : formattedPage,
       search,
       categoryIds
     )
