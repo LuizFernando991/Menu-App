@@ -44,7 +44,7 @@ describe('ProductsController', () => {
 
   describe('findOne', () => {
     it('should call productsService findOne method with correct parameter', async () => {
-      await controller.findOne(1)
+      await controller.findOne('1')
       expect(service.findOne).toHaveBeenCalledWith(1)
     })
   })
