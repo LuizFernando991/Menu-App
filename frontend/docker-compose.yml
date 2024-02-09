@@ -1,0 +1,10 @@
+version: '3.9'
+services:
+  react-app:
+    build: .
+    ports:
+      - 3001:3001
+    environment:
+      - REACT_APP_API_URL=http://localhost:3000/
+      - REACT_APP_API_PUBLIC_FOLDER_URL=http://localhost:3000/public/
+      - PORT=3001
