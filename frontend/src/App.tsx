@@ -10,6 +10,7 @@ import NavBar from './components/NavBar'
 import CreateProduct from './pages/CreateProduct'
 import EditProduct from './pages/EditProduct'
 import Home from './pages/Home'
+import Product from './pages/Product'
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/products/:id" element={<Product />} />
             <Route element={<ProtectedRoutes />}>
               <Route path="/create" element={<CreateProduct />} />
               <Route path="/edit/:id" element={<EditProduct />} />
