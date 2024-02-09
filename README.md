@@ -35,4 +35,4 @@ Now you can access the aplication in http://localhost:3001/
 
 ## More informations
 
-The project also features functionality for creation, editing, and deletion both in the frontend and backend.
+The project also features functionality for creation, editing, deletion, pagination and search filters in the frontend and backend.
