@@ -22,10 +22,15 @@ Now you can access the aplication in http://localhost:3001/
 ## Lib
 
 1 - class-transformer amd class-validator: to validate dto's
+
 2 - multer: to upload files
+
 3 - axios: to config http request
+
 4 - react-cropper, react-select, react-icons: to use components that improve frontend UI
+
 5 - react-hot-toast: to show alerts to user
+
 6 - react-hook-form: to validate forms and manipulate inputs data
 
 ## More informations
